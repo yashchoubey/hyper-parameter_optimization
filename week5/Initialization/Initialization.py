@@ -12,10 +12,6 @@
 # A well chosen initialization can:
 # - Speed up the convergence of gradient descent
 # - Increase the odds of gradient descent converging to a lower training (and generalization) error 
-# 
-# To get started, run the following cell to load the packages and the planar dataset you will try to classify.
-
-# In[1]:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,7 +40,6 @@ train_X, train_Y, test_X, test_Y = load_dataset()
 # 
 # **Instructions**: Please quickly read over the code below, and run it. In the next part you will implement the three initialization methods that this `model()` calls.
 
-# In[2]:
 
 def model(X, Y, learning_rate = 0.01, num_iterations = 15000, print_cost = True, initialization = "he"):
     """
@@ -114,7 +109,6 @@ def model(X, Y, learning_rate = 0.01, num_iterations = 15000, print_cost = True,
 # 
 # **Exercise**: Implement the following function to initialize all parameters to zeros. You'll see later that this does not work well since it fails to "break symmetry", but lets try it anyway and see what happens. Use np.zeros((..,..)) with the correct shapes.
 
-# In[3]:
 
 # GRADED FUNCTION: initialize_parameters_zeros 
 
@@ -152,45 +146,6 @@ print("W2 = " + str(parameters["W2"]))
 print("b2 = " + str(parameters["b2"]))
 
 
-# **Expected Output**:
-# 
-# <table> 
-#     <tr>
-#     <td>
-#     **W1**
-#     </td>
-#         <td>
-#     [[ 0.  0.  0.]
-#  [ 0.  0.  0.]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **b1**
-#     </td>
-#         <td>
-#     [[ 0.]
-#  [ 0.]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **W2**
-#     </td>
-#         <td>
-#     [[ 0.  0.]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **b2**
-#     </td>
-#         <td>
-#     [[ 0.]]
-#     </td>
-#     </tr>
-# 
-# </table> 
 
 # Run the following code to train your model on 15,000 iterations using zeros initialization.
 
@@ -205,13 +160,11 @@ predictions_test = predict(test_X, test_Y, parameters)
 
 # The performance is really bad, and the cost does not really decrease, and the algorithm performs no better than random guessing. Why? Lets look at the details of the predictions and the decision boundary:
 
-# In[6]:
 
 print ("predictions_train = " + str(predictions_train))
 print ("predictions_test = " + str(predictions_test))
 
 
-# In[7]:
 
 plt.title("Model with Zeros initialization")
 axes = plt.gca()
@@ -236,7 +189,6 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 # 
 # **Exercise**: Implement the following function to initialize your weights to large random values (scaled by \*10) and your biases to zeros. Use `np.random.randn(..,..) * 10` for weights and `np.zeros((.., ..))` for biases. We are using a fixed `np.random.seed(..)` to make sure your "random" weights  match ours, so don't worry if running several times your code gives you always the same initial values for the parameters. 
 
-# In[11]:
 
 # GRADED FUNCTION: initialize_parameters_random
 
@@ -276,49 +228,6 @@ print("W2 = " + str(parameters["W2"]))
 print("b2 = " + str(parameters["b2"]))
 
 
-# **Expected Output**:
-# 
-# <table> 
-#     <tr>
-#     <td>
-#     **W1**
-#     </td>
-#         <td>
-#     [[ 17.88628473   4.36509851   0.96497468]
-#  [-18.63492703  -2.77388203  -3.54758979]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **b1**
-#     </td>
-#         <td>
-#     [[ 0.]
-#  [ 0.]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **W2**
-#     </td>
-#         <td>
-#     [[-0.82741481 -6.27000677]]
-#     </td>
-#     </tr>
-#     <tr>
-#     <td>
-#     **b2**
-#     </td>
-#         <td>
-#     [[ 0.]]
-#     </td>
-#     </tr>
-# 
-# </table> 
-
-# Run the following code to train your model on 15,000 iterations using random initialization.
-
-# In[13]:
 
 parameters = model(train_X, train_Y, initialization = "random")
 print ("On the train set:")
@@ -331,13 +240,10 @@ predictions_test = predict(test_X, test_Y, parameters)
 # 
 # Anyway, it looks like you have broken symmetry, and this gives better results. than before. The model is no longer outputting all 0s. 
 
-# In[14]:
-
 print (predictions_train)
 print (predictions_test)
 
 
-# In[15]:
 
 plt.title("Model with large random initialization")
 axes = plt.gca()
